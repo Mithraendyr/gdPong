@@ -9,14 +9,14 @@
 [ext_resource type="Script" uid="uid://dsviaetp2eg78" path="res://Scenes/Gate2.cs" id="6_csrox"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ra5jo"]
-size = Vector3(32, 1, 32)
+size = Vector3(32, 1, 64)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nnts3"]
-size = Vector2(32, 32)
+size = Vector2(32, 64)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ra5jo"]
 flip_faces = true
-size = Vector2(32, 32)
+size = Vector2(32, 64)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdqfs"]
 friction = 0.0
@@ -51,11 +51,11 @@ blend_mode = 1
 material = SubResource("StandardMaterial3D_jdqfs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nnts3"]
-size = Vector3(1, 10, 32)
+size = Vector3(1, 10, 64)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1v1nj"]
 flip_faces = true
-size = Vector2(32, 10)
+size = Vector2(64, 10)
 orientation = 0
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_g2joa"]
@@ -64,7 +64,7 @@ emission = Color(0.2344417, 0.18383628, 0.73598707, 1)
 emission_energy_multiplier = 0.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g2joa"]
-size = Vector2(32, 10)
+size = Vector2(64, 10)
 orientation = 0
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_xrytr"]
@@ -73,7 +73,7 @@ emission = Color(0.23529412, 0.18431373, 0.7372549, 1)
 emission_energy_multiplier = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_csrox"]
-size = Vector3(1, 10, 32)
+size = Vector3(1, 10, 64)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2joa"]
 size = Vector3(2, 2, 1)
@@ -105,8 +105,9 @@ shape = SubResource("BoxShape3D_ra5jo")
 mesh = SubResource("PlaneMesh_nnts3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5, 20)
-fov = 100.0
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5, 34)
+fov = 135.4
+near = 0.075
 
 [node name="Cieling" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -138,7 +139,7 @@ light_energy = 7.351
 omni_range = 16.609
 
 [node name="Player" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30)
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_ra5jo")
@@ -180,7 +181,7 @@ surface_material_override/0 = SubResource("ORMMaterial3D_xrytr")
 shape = SubResource("BoxShape3D_csrox")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3, -30)
 axis_lock_linear_z = true
 axis_lock_angular_z = true
 lock_rotation = true
@@ -198,14 +199,14 @@ light_color = Color(0.69805264, 0, 0.22367609, 1)
 light_energy = 2.0
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 32)
 script = ExtResource("5_kcpg1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_1v1nj")
 
 [node name="Area3D2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -32)
 script = ExtResource("6_csrox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
