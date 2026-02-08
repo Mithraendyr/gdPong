@@ -1,0 +1,225 @@
+[gd_scene load_steps=31 format=3 uid="uid://cho8kfnchu4vs"]
+
+[ext_resource type="Script" uid="uid://d3rliihri8kg6" path="res://Scenes/Arena.cs" id="1_g2joa"]
+[ext_resource type="Script" uid="uid://145bdu7f5v16" path="res://Scenes/Player.cs" id="1_lq7nq"]
+[ext_resource type="Script" uid="uid://b54vgsoj5e3sv" path="res://Scenes/Ball.cs" id="1_nnts3"]
+[ext_resource type="Shape3D" uid="uid://0hcmt4324ayl" path="res://Scenes/new_box_shape_3d.tres" id="2_ra5jo"]
+[ext_resource type="Script" uid="uid://c7674pkei5cy1" path="res://Scenes/Opponent.cs" id="4_1v1nj"]
+[ext_resource type="Script" uid="uid://dehi4bldyfg3q" path="res://Scenes/Gate1.cs" id="5_kcpg1"]
+[ext_resource type="Script" uid="uid://dsviaetp2eg78" path="res://Scenes/Gate2.cs" id="6_csrox"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ra5jo"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nnts3"]
+size = Vector2(32, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ra5jo"]
+flip_faces = true
+size = Vector2(32, 32)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdqfs"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jdqfs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lq7nq"]
+
+[sub_resource type="Gradient" id="Gradient_nnts3"]
+offsets = PackedFloat32Array(0, 0.5720339, 0.69491524, 0.8262712, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.579785, 0.579785, 0.579785, 1, 0.6991525, 0.6991525, 0.6991525, 1, 0.8262712, 0.8262712, 0.8262712, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1v1nj"]
+gradient = SubResource("Gradient_nnts3")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_jdqfs"]
+emission_enabled = true
+emission = Color(0.19817355, 0.7535654, 0.8989267, 1)
+emission_energy_multiplier = 11.3
+emission_texture = SubResource("GradientTexture1D_1v1nj")
+grow_amount = 0.552
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ra5jo"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdqfs"]
+blend_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdqfs"]
+material = SubResource("StandardMaterial3D_jdqfs")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnts3"]
+size = Vector3(1, 10, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1v1nj"]
+flip_faces = true
+size = Vector2(32, 10)
+orientation = 0
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_g2joa"]
+emission_enabled = true
+emission = Color(0.2344417, 0.18383628, 0.73598707, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g2joa"]
+size = Vector2(32, 10)
+orientation = 0
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_xrytr"]
+emission_enabled = true
+emission = Color(0.23529412, 0.18431373, 0.7372549, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_csrox"]
+size = Vector3(1, 10, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2joa"]
+size = Vector3(2, 2, 1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_cs8mb"]
+emission_enabled = true
+emission = Color(0.60270184, 0.035126545, 0.1909334, 1)
+emission_energy_multiplier = 2.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2joa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1v1nj"]
+size = Vector3(32, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kcpg1"]
+size = Vector3(32, 10, 1)
+
+[node name="Arena" type="Node3D"]
+script = ExtResource("1_g2joa")
+
+[node name="Floor" type="RigidBody3D" parent="."]
+disable_mode = 1
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ra5jo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_nnts3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5, 20)
+fov = 100.0
+
+[node name="Cieling" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+disable_mode = 1
+lock_rotation = true
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cieling"]
+shape = SubResource("BoxShape3D_ra5jo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cieling"]
+mesh = SubResource("PlaneMesh_ra5jo")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(0.875, -0.21650635, 0.4330127, 0.4330127, 0.75, -0.5, -0.21650635, 0.625, 0.75, 0, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_jdqfs")
+continuous_cd = true
+script = ExtResource("1_nnts3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_jdqfs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_lq7nq")
+surface_material_override/0 = SubResource("ORMMaterial3D_jdqfs")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Ball"]
+light_energy = 7.351
+omni_range = 16.609
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12)
+axis_lock_linear_z = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_ra5jo")
+gravity_scale = 0.0
+lock_rotation = true
+freeze_mode = 1
+continuous_cd = true
+script = ExtResource("1_lq7nq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = ExtResource("2_ra5jo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_jdqfs")
+
+[node name="WallR" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, 0)
+lock_rotation = true
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallR"]
+shape = SubResource("BoxShape3D_nnts3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallR"]
+mesh = SubResource("PlaneMesh_1v1nj")
+surface_material_override/0 = SubResource("ORMMaterial3D_g2joa")
+
+[node name="WallL" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, 0)
+lock_rotation = true
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallL"]
+mesh = SubResource("PlaneMesh_g2joa")
+surface_material_override/0 = SubResource("ORMMaterial3D_xrytr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallL"]
+shape = SubResource("BoxShape3D_csrox")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3, -10)
+axis_lock_linear_z = true
+axis_lock_angular_z = true
+lock_rotation = true
+script = ExtResource("4_1v1nj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D5"]
+mesh = SubResource("BoxMesh_g2joa")
+surface_material_override/0 = SubResource("ORMMaterial3D_cs8mb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5"]
+shape = SubResource("BoxShape3D_g2joa")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RigidBody3D5"]
+light_color = Color(0.69805264, 0, 0.22367609, 1)
+light_energy = 2.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 16)
+script = ExtResource("5_kcpg1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_1v1nj")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -16)
+script = ExtResource("6_csrox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("BoxShape3D_kcpg1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "0:0"
